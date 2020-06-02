@@ -4,14 +4,13 @@ import * as Helper from './helper.js';
 // This is the base class of the game. All objects in the game are Game Objects. 
 // It provides the constructor for game objects, as well as some useful methods to manipulate them
 export default class GameObject {
-    constructor(positionX, positionY, canBeEaten, gameField, icon) {
+    constructor(positionX, positionY, canBeEaten, icon) {
         this.size = Helper.ObjectSize;
         this.position = {
             X: positionX,
             Y: positionY
         };
-
-        this.gameField = gameField;
+        
         this.icon = icon;
         this.isDestroyed = false;
         this.canBeEaten = canBeEaten;
