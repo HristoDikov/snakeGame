@@ -1,2 +1,2 @@
 # snakeGame
-Basic snake game, where the snake eats his food to grow and avoids the obstacles that kill her.
+A game where the snake eats it's food to grow and avoids the obstacles that kill it.
