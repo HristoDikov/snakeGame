@@ -12,9 +12,10 @@ export default class GameField {
     }
 
     // receives game objects, clears canvas and draws them
-    draw(gameObject) {
-        for(var i = 0; i < gameObject.length; i++){
-            gameObject[i].draw(this.context);
+    draw(gameObjects) {
+        this.context.clearRect(0, 0, Helper.FieldSize.WIDTH, Helper.FieldSize.HEIGHT);
+        for(var i = 0; i < gameObjects.length; i++){
+            gameObjects[i].draw(this.context);
         }
     }
 }

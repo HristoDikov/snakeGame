@@ -10,7 +10,7 @@ export default class GameObject {
             X: positionX,
             Y: positionY
         };
-        
+
         this.icon = icon;
         this.isDestroyed = false;
         this.canBeEaten = canBeEaten;
@@ -31,13 +31,13 @@ export default class GameObject {
 
     // This is the default draw method for each descendant, 
     // however each class is free to define own draw method
-    draw() {
-        this.gameField.ctx.fillStyle = this.color;
-        this.gameField.ctx.moveTo(this.position.X, this.position.Y);
+    draw(context) {
+        context.fillStyle = this.color;
+        context.moveTo(this.position.X, this.position.Y);
         if (this.icon) {
-            this.gameField.ctx.drawImage(this.icon, this.position.X, this.position.Y);
+            context.drawImage(this.icon, this.position.X, this.position.Y);
         } else {
-            this.gameField.ctx.fillRect(this.position.X, this.position.Y, this.size.WIDTH, this.size.HEIGHT);
+            context.fillRect(this.position.X, this.position.Y, this.size.WIDTH, this.size.HEIGHT);
         }
     }
 }

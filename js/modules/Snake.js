@@ -1,12 +1,13 @@
 import GameObject from './GameObject.js';
 import SnakeBody from './SnakeBody.js';
 import * as Helper from './helper.js';
-import * as Engine from './gameEngine.js';
+import * as Engine from './GameEngine.js';
 
 //This class represents the snake itself
 export default class Snake extends GameObject {
     constructor(x, y, length, direction) {
         super(x, y, false, document.getElementById('snake'));
+
         this.lives = 5;
 
         // Snake has the ability to grow, so this field is not constant
@@ -85,24 +86,22 @@ export default class Snake extends GameObject {
     }
 
     //This method describes how the snake manages collisions 
-    onCollision(object) {
-
+    onCollision(collisionObject) {
         // if the collision object is food it increases its foodEaten and totalFood fields
-        // if the collision object is not food, 
-        // it checks number of lives and if it is equal to 0 - dies, 
-        //if not - decreases number of lives and resets it self
-
-        if (object.canBeEaten) {
+        if (collisionObject.canBeEaten) {
             this.foodEaten++;
             this.totalFood++;
         } else {
             if (this.lives === 0) {
                 Engine.endGame();
             } else {
-                lives--;
+                this.lives--;
                 this.reset();
             }
         }
+        // if the collision object is not food, 
+        // it checks number of lives and if it is equal to 0 - dies, 
+        //if not - decreases number of lives and resets it self
     }
 
     // This method makes the snake grow
@@ -130,7 +129,7 @@ export default class Snake extends GameObject {
     //It wipes the snake and positions it in the left part of the field and sets direction to right
     reset() {
         // Set direction
-        this.direction = Helper.direction.RIGHT;
+        this.direction = Helper.Directions.RIGHT;
 
         // Set snake head position (x is calculated, y is random)
         var x = (this.length + 2) * this.size.WIDTH;
@@ -188,7 +187,9 @@ export default class Snake extends GameObject {
 
     //This method returns true if the snake leaves the game field
     isOutOfGameField() {
-        return this.position.X < 0 || this.position.Y > Helper.FieldSize.WIDTH ||
-        this.position.Y < 0 || this.position.Y > Helper.FieldSize.HEIGHT;
+        return this.position.X < 0 
+        || this.position.Y < 0 
+        || this.position.X > Helper.FieldSize.WIDTH 
+        || this.position.Y > Helper.FieldSize.HEIGHT;
     }
 }
